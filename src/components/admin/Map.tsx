@@ -31,11 +31,19 @@ export default function Map() {
 
   // 加载地图函数，在这里可以设置地图
   async function loadMap() {
+    const amapKey = process.env.NEXT_PUBLIC_AMAP_KEY ?? "";
+  
+  if (!amapKey) {
+    console.error('高德地图API密钥未配置');
+    toast.error('地图功能不可用，请联系管理员配置API密钥');
+    return;
+  }
+    
     (window as any)._AMapSecurityConfig = {
       securityJsCode: process.env.NEXT_PUBLIC_AMAP_JSCODE,
     };
     window.AMap = await AMapLoader.load({
-      key: process.env.NEXT_PUBLIC_AMAP_KEY,
+      key: amapKey,
       version: "2.0",
     });
     const mapOptions: AMap.MapOptions = {
