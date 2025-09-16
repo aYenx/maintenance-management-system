@@ -70,7 +70,7 @@ export default function page() {
   const [lngLat, setLngLat] = useState<[number, number]>();
 
   function loadMap() {
-    const amapKey = process.env.NEXT_PUBLIC_AMAP_KEY;
+    const amapKey = process.env.NEXT_PUBLIC_AMAP_KEY ?? "";
   
   if (!amapKey) {
     console.error('高德地图API密钥未配置');
@@ -78,7 +78,8 @@ export default function page() {
     return;
   }
     AMapLoader.load({
-      key: process.env.NEXT_PUBLIC_AMAP_KEY,
+      // key: process.env.NEXT_PUBLIC_AMAP_KEY,
+      key: amapKey,
       version: "2.0",
     })
       .then((AMap) => {
