@@ -74,7 +74,6 @@ export default function page() {
   
   if (!amapKey) {
     console.error('高德地图API密钥未配置');
-    toast.error('地图功能不可用，请联系管理员配置API密钥');
     return;
   }
     AMapLoader.load({
